@@ -197,15 +197,105 @@ Moreover, it is noteworthy that the influence of the "volume" and "market cap" f
 
 ----------------------------------------------------------------------------------
 ### Problem 3: Prediction
+#### Method 1
+##### Try models
+##### Staking Models (KNN + Decision Tree)
+![Alt text](images/prediction/stackingknn15manhattan_decisionTree10_method1_on_validation.png)
+**************************************************
+Model:  Stacking
+***********************************
+[[15 24]
+ [10 43]]
+{'AUC': 0.598,
+ 'Accuracy': 0.63,
+ 'F1 Score': 0.717,
+ 'MSE': 0.37,
+ 'Precision': 0.642,
+ 'Recall': 0.811}
+![Alt text](/images/prediction/stacking(knn15manhattan_decisionTree15)_method1_on%20test.png)
+**************************************************
+Model:  Stacking
+***********************************
+[[9 3]
+ [9 9]]
+{'AUC': 0.625,
+ 'Accuracy': 0.6,
+ 'F1 Score': 0.6,
+ 'MSE': 0.4,
+ 'Precision': 0.75,
+ 'Recall': 0.5}
+##### Evaluation
+![Alt text](/images/prediction/mtrics_method1_on%20validation.png)
+#### Method 2
+##### Random Forest
+![Alt text](/images/prediction/randomForest16_method2_on%20validation.png)
+**************************************************
+Model:  Random Forest 16
+***********************************
+[[14 25]
+ [13 40]]
+{'AUC': 0.557,
+ 'Accuracy': 0.587,
+ 'F1 Score': 0.678,
+ 'MSE': 0.413,
+ 'Precision': 0.615,
+ 'Recall': 0.755}
+__________________________________________________
+![Alt text](/images/prediction/randomForest16_method2_on%20test.png)
+**************************************************
+Model:  Random Forest 16
+***********************************
+[[ 6  6]
+ [ 3 15]]
+{'AUC': 0.667,
+ 'Accuracy': 0.7,
+ 'F1 Score': 0.769,
+ 'MSE': 0.3,
+ 'Precision': 0.714,
+ 'Recall': 0.833}
+__________________________________________________
+##### Evaluation
+![Alt text](/images/prediction/mtrics_method2_on%20validation.png)
+#### Method 3
+##### Logistic Regression
+![Alt text](/images/prediction/logestic_regression_method3_on%20validation.png)
+**************************************************
+Model:  Logistic Regression
+***********************************
+[[21 25]
+ [12 47]]
+{'AUC': 0.627,
+ 'Accuracy': 0.648,
+ 'F1 Score': 0.718,
+ 'MSE': 0.352,
+ 'Precision': 0.653,
+ 'Recall': 0.797}
+__________________________________________________
+![Alt text](/images/prediction/logestic_regression_method3_on%20test.png)
+**************************************************
+Model:  Logistic Regression
+***********************************
+[[ 1 11]
+ [ 1 17]]
+{'AUC': 0.514,
+ 'Accuracy': 0.6,
+ 'F1 Score': 0.739,
+ 'MSE': 0.4,
+ 'Precision': 0.607,
+ 'Recall': 0.944}
+__________________________________________________
+##### Evaluation
+![Alt text](/images/prediction/mtrics_method1%262%263_on%20test.png)
+
 
 #### Presenting New Solution Design:
 ##### Moving average crossover strategy
-in this section, we present a moving average crossover strategy which is a simple technical analysis strategy that uses two moving averages to identify trend changes. The strategy works by looking for the point at which the shorter moving average crosses above or below the longer moving average.
+in this section, we present a moving average crossover strategy which is a simple technical analysis strategy that uses two moving averages to identify trend changes. The strategy works by looking for the point at which the shorter moving average crosses above or below the longer moving average. the shorter moving average is the 44-day exponential moving average (EMA), and the longer moving average is the 252-day EMA. When the 44-day EMA crosses above the 252-day EMA, it is a signal that the market is entering a bullish trend. When the 44-day EMA crosses below the 252-day EMA, it is a signal that the market is entering a bearish trend.
 
-In this code, the shorter moving average is the 44-day exponential moving average (EMA), and the longer moving average is the 252-day EMA. When the 44-day EMA crosses above the 252-day EMA, it is a signal that the market is entering a bullish trend. When the 44-day EMA crosses below the 252-day EMA, it is a signal that the market is entering a bearish trend.
+![Alt text](images/prediction/EMA_Crossover.png)
 
+##### Generating trading signals with moving average crossover
 The following example shows how to use the moving average crossover strategy to trade ETH/USD:
-Generating trading signals with moving average crossover
 Here we want to implement a simple trading strategy based on the Exponential moving average (EMA) to generate trading signals. The strategy works as follows:
 
 Two EMAs with time periods of 44 and 252 days are calculated. If the 44-day EMA is above the 252-day EMA, a long position is opened. If the 44-day EMA is below the 252-day EMA, a short position is opened. Output:
